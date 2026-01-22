@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/core/include",
+                "${workspaceFolder}/external",
+                "${workspaceFolder}/gui/include",
+                "/opt/intel/oneapi/compiler/latest/include",
+                "/opt/intel/oneapi/compiler/latest/include/sycl",
+                "/usr/include",
+                "/usr/include/c++/*",
+                "/usr/include/x86_64-linux-gnu/c++/*",
+                "/usr/include/x86_64-linux-gnu/qt6",
+                "/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
+                "/usr/include/x86_64-linux-gnu/qt5/QtGui",
+                "/usr/include/x86_64-linux-gnu/qt5/QtCore",
+                "/usr/include/x86_64-linux-gnu/qt5"
+            ],
+            "defines": [
+                "__SYCL_SINGLE_SOURCE__"
+            ],
+            "compilerPath": "/opt/intel/oneapi/compiler/latest/bin/icpx",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}

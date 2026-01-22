@@ -1,0 +1,95 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Git: Push to GitHub",
+            "type": "shell",
+            "command": "git push origin main",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Git: Commit All Changes",
+            "type": "shell",
+            "command": "git add . && git commit -m '${input:commitMessage}'",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Git: Commit and Push",
+            "type": "shell",
+            "command": "git add . && git commit -m '${input:commitMessage}' && git push origin main",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Build: CMake Configure",
+            "type": "shell",
+            "command": "source /opt/intel/oneapi/setvars.sh > /dev/null 2>&1 && cmake -S . -B build",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Build: Make All",
+            "type": "shell",
+            "command": "source /opt/intel/oneapi/setvars.sh > /dev/null 2>&1 && cd build && make -j$(nproc)",
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run: GUI",
+            "type": "shell",
+            "command": "./run_gui.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run: CLI Help",
+            "type": "shell",
+            "command": "./run_cli.sh help",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run: Benchmark",
+            "type": "shell",
+            "command": "source /opt/intel/oneapi/setvars.sh > /dev/null 2>&1 && cd build && ./benchmark",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "commitMessage",
+            "type": "promptString",
+            "description": "Enter commit message",
+            "default": "Update code"
+        }
+    ]
+}

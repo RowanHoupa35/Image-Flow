@@ -1,0 +1,50 @@
+{
+    // Git Integration Settings
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.postCommitCommand": "none",
+    "git.enableStatusBarSync": true,
+    "git.fetchOnPull": true,
+    "git.pruneOnFetch": true,
+
+    // Auto-save settings (sync changes quickly)
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+
+    // Git commit message template
+    "git.inputValidationLength": 72,
+    "git.inputValidationSubjectLength": 50,
+
+    // C++ Settings
+    "C_Cpp.default.compilerPath": "/opt/intel/oneapi/compiler/latest/bin/icpx",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+
+    // CMake Settings
+    "cmake.configureOnOpen": false,
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+
+    // File Associations
+    "files.associations": {
+        "*.hpp": "cpp",
+        "*.cpp": "cpp",
+        "*.h": "cpp"
+    },
+
+    // Files to exclude from explorer
+    "files.exclude": {
+        "**/.git": false,  // Show .git folder for visibility
+        "**/build": true,
+        "**/.vscode": false
+    },
+
+    // Terminal settings
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash",
+            "args": ["-c", "source /opt/intel/oneapi/setvars.sh > /dev/null 2>&1; exec bash"]
+        }
+    }
+}

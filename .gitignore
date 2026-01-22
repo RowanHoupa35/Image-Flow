@@ -27,7 +27,7 @@ moc_*.cpp
 ui_*.h
 
 # IDE files
-.vscode/
+# .vscode/  ← KEEP VSCode settings for GitHub integration
 .idea/
 *.user
 *.pro.user
