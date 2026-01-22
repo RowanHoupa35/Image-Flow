@@ -159,7 +159,9 @@ factory.registerFilter<MyFilter>("myfilter", "My Filter", "Description");
 
 ## Performance Benchmarks
 
+```bash
 bash -c 'source /opt/intel/oneapi/setvars.sh > /dev/null 2>&1 && cd build && ./benchmark 2>&1'
+```
 
 ## Project Structure
 
