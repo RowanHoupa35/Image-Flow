@@ -1,0 +1,65 @@
+# Build directories
+build/
+cmake-build-*/
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# Compiled binaries
+*.o
+*.so
+*.a
+*.exe
+*.out
+ImageFlowGUI
+imageflow_cli
+benchmark
+
+# Qt generated files
+*_autogen/
+*.qrc.depends
+moc_*.cpp
+ui_*.h
+
+# IDE files
+.vscode/
+.idea/
+*.user
+*.pro.user
+.DS_Store
+
+# Temporary files
+*.swp
+*.swo
+*~
+.#*
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.pdf
+
+# Test images (optional - comment out if you want to include them)
+test_images/
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tga
+
+# Documentation summary (internal use)
+DOCUMENTATION_SUMMARY.md
+
+# Backup and temporary scripts
+*.bak
+compile_test.sh
+launch_imageflow.sh
+run_fixed.sh
+test_button.sh

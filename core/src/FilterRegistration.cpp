@@ -1,0 +1,79 @@
+#include "FilterFactory.hpp"
+#include "filters/GrayscaleFilter.hpp"
+#include "filters/GrayscaleFilterGPU.hpp"
+#include "filters/InvertFilter.hpp"
+#include "filters/BrightnessFilter.hpp"
+#include "filters/BoxBlurFilter.hpp"
+#include "filters/BoxBlurFilterGPU.hpp"
+#include "filters/SepiaFilter.hpp"
+#include <iostream>
+
+/**
+ * @brief Registers all available filters with the FilterFactory.
+ *
+ * To add a new filter:
+ * 1. Create your filter class inheriting from Filter
+ * 2. Add a registration line below
+ * 3. Rebuild - that's it! The GUI will automatically show it.
+ *
+ * No need to modify the GUI code!
+ */
+void registerAllFilters() {
+    std::cout << "========== REGISTERING FILTERS ==========" << std::endl;
+    auto& factory = FilterFactory::instance();
+
+    // Grayscale filter (has both CPU and GPU versions)
+    factory.registerFilterWithGPU<GrayscaleFilter, GrayscaleFilterGPU>(
+        "grayscale",
+        "Niveaux de Gris",
+        "Convertit l'image en niveaux de gris"
+    );
+
+    // Invert filter (CPU only)
+    factory.registerFilter<InvertFilter>(
+        "invert",
+        "Inverser",
+        "Inverse les couleurs de l'image"
+    );
+
+    // Brightness filter (parameterized, CPU only)
+    factory.registerParameterizedFilter<BrightnessFilter>(
+        "brightness",
+        "Luminosité",
+        "Ajuste la luminosité de l'image",
+        []() { return std::make_unique<BrightnessFilter>(1.0f); }
+    );
+
+    // Box Blur filter (has both CPU and GPU versions, parameterized)
+    factory.registerParameterizedFilterWithGPU<BoxBlurFilter, BoxBlurFilterGPU>(
+        "boxblur",
+        "Flou",
+        "Applique un flou à l'image",
+        []() { return std::make_unique<BoxBlurFilter>(2); },
+        []() { return std::make_unique<BoxBlurFilterGPU>(2); }
+    );
+
+    // Sepia filter (DEMO: Added without touching GUI code!)
+    factory.registerFilter<SepiaFilter>(
+        "sepia",
+        "Ton Sépia",
+        "Applique un effet ton sépia vintage"
+    );
+
+    std::cout << "Total filters registered: " << factory.getFilterIds().size() << std::endl;
+    std::cout << "========== REGISTRATION COMPLETE ==========" << std::endl;
+}
+
+/**
+ * @brief Static initialization helper
+ */
+namespace {
+    struct FilterRegistrar {
+        FilterRegistrar() {
+            registerAllFilters();
+        }
+    };
+
+    // This ensures filters are registered before main() runs
+    static FilterRegistrar registrar;
+}
