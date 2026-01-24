@@ -1,3 +1,35 @@
+/**
+ * @file FilterRegistration.cpp
+ * @brief Central registration point for all image filters
+ *
+ * This file registers all available filters with the FilterFactory singleton.
+ * Using static initialization, filters are registered before main() executes,
+ * making them immediately available to both GUI and CLI interfaces.
+ *
+ * @details
+ * Plugin Architecture:
+ * To add a new filter to ImageFlow:
+ * 1. Create your filter class inheriting from Filter (in filters/ directory)
+ * 2. Include the header here
+ * 3. Add a factory.registerFilter<YourFilter>(...) call
+ * 4. Rebuild - the GUI will automatically display the new filter!
+ *
+ * Registration Methods:
+ * - registerFilter<T>(): Basic CPU-only filter
+ * - registerFilterWithGPU<CPU, GPU>(): Filter with CPU and GPU variants
+ * - registerParameterizedFilter<T>(): Filter with constructor parameters
+ * - registerParameterizedFilterWithGPU<CPU, GPU>(): Parameterized with GPU variant
+ *
+ * Static Initialization:
+ * The FilterRegistrar struct uses the "static initialization" idiom to
+ * ensure registerAllFilters() runs before main(). This is a common C++
+ * pattern for plugin/module registration.
+ *
+ * @see FilterFactory.hpp for the factory implementation
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "FilterFactory.hpp"
 #include "filters/GrayscaleFilter.hpp"
 #include "filters/GrayscaleFilterGPU.hpp"

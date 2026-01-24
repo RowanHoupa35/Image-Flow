@@ -1,3 +1,26 @@
+/**
+ * @file Filter.hpp
+ * @brief Abstract base class for all image filters (Polymorphism core)
+ *
+ * This file defines the Filter interface that all concrete filters must implement.
+ * It is the foundation of the polymorphic architecture, enabling:
+ * - Runtime filter selection via virtual dispatch
+ * - Easy addition of new filters without modifying existing code (Open/Closed Principle)
+ * - Uniform treatment of all filters through the base class pointer
+ *
+ * Key methods:
+ * - apply(): Pure virtual method for image processing (must be overridden)
+ * - getName(): Returns filter display name for UI
+ * - clone(): Prototype pattern for filter duplication
+ * - supportsGPU(): Query GPU acceleration availability
+ *
+ * @see FilterFactory for dynamic filter creation
+ * @see FilterPipeline for chaining multiple filters
+ *
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #ifndef FILTER_HPP
 #define FILTER_HPP
 

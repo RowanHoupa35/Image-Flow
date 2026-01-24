@@ -1,3 +1,25 @@
+/**
+ * @file FilterPipeline.hpp
+ * @brief Filter chain management for sequential image processing
+ *
+ * This file defines the FilterPipeline class which manages a sequence of
+ * filters to be applied to an image. It demonstrates the Composite pattern
+ * and uses smart pointers (std::unique_ptr) with move semantics.
+ *
+ * Key Features:
+ * - Add/remove/reorder filters dynamically
+ * - Apply all filters sequentially with progress tracking
+ * - Support for CPU/GPU processing mode selection
+ * - Pipeline serialization (save/load to JSON)
+ * - Performance metrics collection
+ *
+ * @see Filter.hpp for the base filter interface
+ * @see FilterFactory.hpp for filter creation
+ *
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #ifndef FILTER_PIPELINE_HPP
 #define FILTER_PIPELINE_HPP
 

@@ -1,4 +1,31 @@
-// Dans core/src/filters/InvertFilter.cpp
+/**
+ * @file InvertFilter.cpp
+ * @brief Color inversion filter implementation using OpenMP
+ *
+ * Inverts all color channels to create a photographic negative effect.
+ * Each pixel value V is transformed to (255 - V).
+ *
+ * @details
+ * Algorithm: output[i] = 255 - input[i] for all pixels
+ * - Simple subtraction from maximum value
+ * - Works on all channels (RGB, RGBA, grayscale)
+ * - No color space conversion needed
+ *
+ * Parallelization Strategy:
+ * - Flattened 1D loop over all pixel components
+ * - Dynamic scheduling with 256-pixel chunks for load balancing
+ * - Thread count auto-detected via omp_get_max_threads()
+ * - No synchronization needed (embarrassingly parallel)
+ *
+ * Performance:
+ * - Memory-bound operation (simple arithmetic)
+ * - Scales well with core count
+ * - Debug mode prints thread count and pixel count
+ *
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "filters/InvertFilter.hpp"
 #include <omp.h>
 #include <iostream>

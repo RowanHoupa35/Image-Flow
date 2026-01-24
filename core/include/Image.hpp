@@ -1,3 +1,24 @@
+/**
+ * @file Image.hpp
+ * @brief Image data structure for pixel storage and manipulation
+ *
+ * This file defines the Image class which serves as the fundamental data
+ * structure for all image processing operations. It provides:
+ * - Pixel storage using std::vector<uint8_t> (STL container)
+ * - File I/O via STB library (PNG, JPG, BMP, TGA)
+ * - Bounds-checked pixel access via at(x, y, channel)
+ * - SYCL buffer creation for GPU processing
+ *
+ * Memory Layout: Pixels are stored in row-major order as [R,G,B,R,G,B,...]
+ * for RGB images, or [Y,Y,Y,...] for grayscale.
+ *
+ * @see Filter.hpp for image transformation interface
+ * @see GrayscaleFilterGPU.hpp for SYCL buffer usage example
+ *
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #ifndef IMAGE_HPP
 #define IMAGE_HPP
 

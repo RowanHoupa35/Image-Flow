@@ -1,3 +1,34 @@
+/**
+ * @file BoxBlurFilter.cpp
+ * @brief Box blur (averaging) filter implementation using OpenMP
+ *
+ * Applies a box blur effect by averaging each pixel with its neighbors
+ * within a specified radius. Creates a smoothing/softening effect.
+ *
+ * @details
+ * Algorithm:
+ * - For each pixel, compute the average of all pixels in a square neighborhood
+ * - Neighborhood size: (2*radius + 1) × (2*radius + 1)
+ * - Edge pixels use only available neighbors (no padding)
+ *
+ * Parallelization Strategy:
+ * - Uses OpenMP collapse(2) to parallelize X and Y loops together
+ * - Dynamic scheduling handles varying workloads at image edges
+ * - Each output pixel computed independently (no race conditions)
+ *
+ * Complexity: O(width × height × radius²)
+ * - Larger radius = more neighbors to average = slower
+ * - Consider separable box filter for O(width × height × radius)
+ *
+ * Performance:
+ * - Execution time measured for benchmarking
+ * - Typical radius: 1-5 for subtle blur, 10+ for strong blur
+ *
+ * @see BoxBlurFilterGPU.cpp for GPU-accelerated version
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "filters/BoxBlurFilter.hpp"
 #include <algorithm>
 #include <vector>

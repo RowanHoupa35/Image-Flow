@@ -1,3 +1,27 @@
+/**
+ * @file SepiaFilter.hpp
+ * @brief Sepia tone vintage photo effect filter with OpenMP parallelization
+ *
+ * This filter applies a warm, brownish sepia tone to images, simulating the
+ * look of antique photographs. Uses standard sepia transformation coefficients
+ * derived from photographic color science.
+ *
+ * @details
+ * - Parallelization: OpenMP with dynamic scheduling for load balancing
+ * - Formula (per Microsoft/Adobe standards):
+ *     newR = 0.393*R + 0.769*G + 0.189*B
+ *     newG = 0.349*R + 0.686*G + 0.168*B
+ *     newB = 0.272*R + 0.534*G + 0.131*B
+ * - Values are clamped to [0, 255] to prevent overflow
+ * - Grayscale images are passed through unchanged
+ *
+ * @note This is also a DEMONSTRATION filter showing the plugin architecture:
+ *       just create the file, register it in FilterRegistration.cpp, rebuild!
+ * @see GrayscaleFilter, BrightnessFilter for other color transformation filters
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #ifndef SEPIA_FILTER_HPP
 #define SEPIA_FILTER_HPP
 
@@ -5,10 +29,7 @@
 
 /**
  * @class SepiaFilter
- * @brief Applies a sepia tone effect to the image.
- *
- * This is a DEMONSTRATION filter showing how easy it is to add new filters!
- * Just create this file, register it, and rebuild - no GUI changes needed!
+ * @brief Applies a sepia tone effect to the image using OpenMP parallelization.
  */
 class SepiaFilter : public Filter {
 public:

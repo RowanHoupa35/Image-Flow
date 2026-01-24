@@ -1,3 +1,38 @@
+/**
+ * @file BoxBlurFilterGPU.cpp
+ * @brief GPU-accelerated box blur implementation using SYCL
+ *
+ * Performs box blur (averaging) on GPU using Intel oneAPI SYCL.
+ * Each pixel is computed by a separate GPU work-item, enabling massive
+ * parallelism for the convolution operation.
+ *
+ * @details
+ * SYCL Implementation:
+ * - One work-item per pixel (width * height total)
+ * - Each work-item computes the average of its (2*radius+1)² neighborhood
+ * - Uses temporary vectors to avoid buffer synchronization issues
+ * - Final result copied back to output image
+ *
+ * Memory Management:
+ * - Input/output copied to intermediate vectors before GPU transfer
+ * - SYCL buffers manage CPU-GPU memory automatically
+ * - Uses scope-based buffer destruction for synchronization
+ *
+ * Error Handling:
+ * - Catches sycl::exception for GPU failures
+ * - Falls back to CPU BoxBlurFilter if GPU unavailable
+ * - Always completes processing regardless of GPU status
+ *
+ * Performance Notes:
+ * - Compute-bound due to O(radius²) work per pixel
+ * - Benefits from discrete GPUs more than grayscale filter
+ * - Memory transfer overhead may dominate for small images
+ *
+ * @see BoxBlurFilter.cpp for CPU version
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "filters/BoxBlurFilterGPU.hpp"
 #include "filters/BoxBlurFilter.hpp"
 #include <iostream>

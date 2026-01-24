@@ -1,3 +1,35 @@
+/**
+ * @file MainWindow.cpp
+ * @brief Implementation of the ImageFlow GUI main window
+ *
+ * This file implements all GUI functionality including:
+ * - Window setup and layout construction
+ * - Image loading/saving with Qt file dialogs
+ * - Filter pipeline management (add, remove, reorder)
+ * - Real-time preview with timer-based debouncing
+ * - CPU/GPU processing mode selection
+ *
+ * @details
+ * Event Handling:
+ * - Uses Qt's signal/slot mechanism (SIGNAL/SLOT macros for Qt5 compat)
+ * - Preview timer prevents excessive reprocessing during slider moves
+ * - Progress callback updates QProgressBar during pipeline execution
+ *
+ * Filter Integration:
+ * - Dynamically queries FilterFactory for available filters
+ * - Builds filter menu at runtime (no hardcoded filter list)
+ * - Only brightness/blur have parameter UI (design choice)
+ *
+ * Image Conversion:
+ * - imageToPixmap(): Converts Image class to Qt's QPixmap
+ * - Handles both RGB (3 channel) and grayscale (1 channel)
+ * - Scales to 400x300 for display while preserving aspect ratio
+ *
+ * @see MainWindow.hpp for class declaration
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "MainWindow.hpp"
 #include <QApplication>
 #include <QFileDialog>

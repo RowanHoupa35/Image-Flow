@@ -1,3 +1,37 @@
+/**
+ * @file MainWindow.hpp
+ * @brief Main GUI window for the ImageFlow application
+ *
+ * This file defines the MainWindow class which provides the graphical user
+ * interface for ImageFlow. It integrates Qt5 widgets with the core image
+ * processing pipeline.
+ *
+ * @details
+ * GUI Architecture:
+ * - Left panel: Original and processed image display (QLabel with QPixmap)
+ * - Right panel: Filter pipeline management, parameters, GPU toggle
+ * - Menu bar: File operations (open, save, exit), Help (about)
+ * - Status bar: Current operation status and image info
+ *
+ * Key Features:
+ * - Real-time preview with debounced timer (100ms delay)
+ * - Dynamic filter menu built from FilterFactory registry
+ * - GPU acceleration toggle (SYCL-based)
+ * - Progress bar for long-running pipeline operations
+ * - Parameter sliders for brightness and blur radius
+ *
+ * Qt Components Used:
+ * - QMainWindow: Main application window framework
+ * - QListWidget: Filter pipeline display and selection
+ * - QSlider/QSpinBox: Filter parameter controls
+ * - QTimer: Debounced preview updates
+ * - Signals/Slots: Qt's event-driven programming model
+ *
+ * @see MainWindow.cpp for implementation
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 

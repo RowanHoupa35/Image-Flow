@@ -1,3 +1,24 @@
+/**
+ * @file FilterFactory.hpp
+ * @brief Factory and Registry pattern for dynamic filter creation
+ *
+ * This file implements the Singleton, Factory, and Registry design patterns
+ * to enable dynamic filter instantiation without hardcoding dependencies.
+ * It is a key component of the extensible architecture, allowing new filters
+ * to be added without modifying GUI or CLI code.
+ *
+ * Design Patterns:
+ * - Singleton: Single global instance via FilterFactory::instance()
+ * - Factory: Creates filter objects without exposing instantiation logic
+ * - Registry: Maintains a map of all available filters with metadata
+ *
+ * @see FilterRegistration.cpp for filter registration
+ * @see Filter.hpp for the base filter interface
+ *
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #ifndef FILTER_FACTORY_HPP
 #define FILTER_FACTORY_HPP
 

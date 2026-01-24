@@ -1,3 +1,31 @@
+/**
+ * @file GrayscaleFilter.cpp
+ * @brief CPU implementation of grayscale conversion using OpenMP
+ *
+ * Converts RGB images to single-channel grayscale using the luminance
+ * formula derived from human visual perception (ITU-R BT.601 standard).
+ *
+ * @details
+ * Algorithm: Gray = 0.299*R + 0.587*G + 0.114*B
+ * - Green has highest weight (human eyes most sensitive to green)
+ * - Red has medium weight
+ * - Blue has lowest weight
+ *
+ * Parallelization Strategy:
+ * - Uses OpenMP #pragma omp parallel for
+ * - Dynamic scheduling for load balancing across threads
+ * - Each row processed independently (no data dependencies)
+ * - Thread count determined by OMP_NUM_THREADS environment variable
+ *
+ * Performance:
+ * - Execution time measured and stored in lastExecutionTime
+ * - Typical speedup: 4-8x on 8-core CPU vs single-threaded
+ *
+ * @see GrayscaleFilterGPU.cpp for GPU version
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "filters/GrayscaleFilter.hpp"
 
 void GrayscaleFilter::apply(const Image& input, Image& output) {

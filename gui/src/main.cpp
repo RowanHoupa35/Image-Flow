@@ -1,3 +1,34 @@
+/**
+ * @file main.cpp (GUI)
+ * @brief Entry point for the ImageFlow GUI application
+ *
+ * Initializes the Qt application, registers all filters, sets up the dark
+ * theme, and launches the main window.
+ *
+ * @details
+ * Initialization Order:
+ * 1. Register all filters with FilterFactory (before QApplication)
+ * 2. Create QApplication instance
+ * 3. Configure Fusion style with dark palette
+ * 4. Create and show MainWindow
+ * 5. Enter Qt event loop
+ *
+ * Dark Theme:
+ * - Uses Qt's Fusion style for cross-platform consistency
+ * - Custom dark palette for better image contrast visibility
+ * - Professional appearance suitable for image editing
+ *
+ * Filter Registration:
+ * - Calls registerAllFilters() before GUI creation
+ * - Ensures filters are available when MainWindow builds its menu
+ * - Static initialization in FilterRegistration.cpp also runs
+ *
+ * @see MainWindow.hpp for main window class
+ * @see FilterRegistration.cpp for filter registration
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include <QApplication>
 #include <QStyleFactory>
 #include <QPalette>

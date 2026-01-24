@@ -1,3 +1,32 @@
+/**
+ * @file test_filters.cpp
+ * @brief Unit tests for individual filter implementations
+ *
+ * Tests each filter in isolation by applying it to a synthetic gradient
+ * image and saving the output for visual verification.
+ *
+ * @details
+ * Test Image:
+ * - Size: 400x300 pixels, RGB
+ * - Pattern: Red gradient horizontal, green gradient vertical, blue constant
+ *
+ * Filters Tested:
+ * 1. InvertFilter: Creates photographic negative
+ * 2. BrightnessFilter: 50% brightness increase (factor 1.5)
+ * 3. BoxBlurFilter: Blur with radius 3
+ * 4. Filter chain: Invert followed by blur
+ *
+ * Output Files:
+ * - test_inverted.png: Inversion result
+ * - test_brightened.png: Brightness result
+ * - test_blurred.png: Blur result
+ * - test_chain.png: Combined filter result
+ *
+ * @note Visual inspection required - no automated pass/fail
+ * @author ENSTA Paris - IN204 Project
+ * @date January 2026
+ */
+
 #include "Image.hpp"
 #include "filters/InvertFilter.hpp"
 #include "filters/BrightnessFilter.hpp"

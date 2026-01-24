@@ -1,3 +1,33 @@
+/**
+ * @file test_gpu.cpp
+ * @brief SYCL GPU availability and functionality test
+ *
+ * Verifies that SYCL can access a GPU device and execute a simple kernel.
+ * Essential first test before running GPU-accelerated filters.
+ *
+ * @details
+ * Test Procedure:
+ * 1. Request GPU device via sycl::gpu_selector_v
+ * 2. Print detected device name
+ * 3. Run simple vector addition kernel: c[i] = a[i] + b[i]
+ * 4. Verify result: c[0] should equal 3 (1 + 2)
+ *
+ * SYCL Components Tested:
+ * - sycl::queue: Command queue creation
+ * - sycl::gpu_selector_v: GPU device selection
+ * - sycl::buffer: Memory transfer
+ * - sycl::parallel_for: Kernel execution
+ *
+ * Possible Outcomes:
+ * - "RÉUSSI": GPU works correctly with SYCL
+ * - "ÉCHEC": Kernel executed but wrong result
+ * - Exception: No GPU available or driver issue
+ *
+ * @note Requires Intel oneAPI DPC++ compiler and compatible GPU
+ * @author ENSTA Paris - IN204 Project
+ * @date January 2026
+ */
+
 #include <sycl/sycl.hpp>
 #include <iostream>
 

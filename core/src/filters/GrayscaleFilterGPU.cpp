@@ -1,3 +1,36 @@
+/**
+ * @file GrayscaleFilterGPU.cpp
+ * @brief GPU implementation of grayscale conversion using SYCL
+ *
+ * Converts RGB images to grayscale using parallel GPU execution via Intel
+ * oneAPI SYCL. Each pixel is processed by a separate GPU work-item, enabling
+ * massive parallelism on compatible hardware.
+ *
+ * @details
+ * SYCL Components Used:
+ * - sycl::queue: Command queue bound to GPU device
+ * - sycl::gpu_selector_v: Automatic GPU device selection
+ * - sycl::buffer: Memory containers for CPU-GPU data transfer
+ * - sycl::parallel_for: Kernel launch for each pixel
+ * - sycl::handler: Command group handler for kernel submission
+ *
+ * Algorithm: Same as CPU version (0.299*R + 0.587*G + 0.114*B)
+ *
+ * Error Handling:
+ * - Catches sycl::exception for GPU failures
+ * - Falls back to CPU (GrayscaleFilter) if GPU unavailable
+ * - Ensures processing always completes even without GPU
+ *
+ * Performance Notes:
+ * - Best on discrete GPUs (NVIDIA, AMD, Intel Arc)
+ * - May be slower on integrated GPUs due to memory transfer overhead
+ * - Execution time measured and stored for benchmarking
+ *
+ * @see GrayscaleFilter.cpp for CPU version
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "filters/GrayscaleFilterGPU.hpp"
 #include "filters/GrayscaleFilter.hpp"
 #include <iostream>

@@ -1,3 +1,33 @@
+/**
+ * @file test_parallel.cpp
+ * @brief Comprehensive parallelization benchmark (CPU multi-core + GPU)
+ *
+ * Compares performance across different parallelization strategies:
+ * - Single-threaded CPU
+ * - Multi-threaded CPU (OpenMP with 1, 2, 4, 8 threads)
+ * - GPU (SYCL)
+ *
+ * @details
+ * Test 1: Multi-Core Scaling
+ * - Runs InvertFilter with increasing thread counts
+ * - Shows scaling efficiency of OpenMP implementation
+ * - Image size: 1024x1024 RGB
+ *
+ * Test 2: GPU vs CPU
+ * - Compares GrayscaleFilter (CPU) vs GrayscaleFilterGPU (GPU)
+ * - Image size: 2048x2048 RGB (~12 MB)
+ * - Verifies results match between implementations
+ *
+ * Output Includes:
+ * - Execution times in milliseconds
+ * - Speedup ratios
+ * - Result verification (CPU/GPU output comparison)
+ *
+ * @note Large images needed to see meaningful GPU speedup
+ * @author ENSTA Paris - IN204 Project
+ * @date January 2026
+ */
+
 #include <iostream>
 #include <iomanip>
 #include "core/Image.hpp"

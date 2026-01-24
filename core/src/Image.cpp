@@ -1,3 +1,31 @@
+/**
+ * @file Image.cpp
+ * @brief Implementation of the Image class for pixel data management
+ *
+ * This file implements the core Image class which handles:
+ * - Pixel storage in row-major format [R,G,B,R,G,B,...]
+ * - File I/O using the stb_image library (single-header, public domain)
+ * - Bounds-checked pixel access via at(x, y, channel)
+ *
+ * @details
+ * Supported File Formats:
+ * - Read: PNG, JPG, BMP, GIF, TGA, PSD, HDR, PIC
+ * - Write: PNG, JPG (90% quality), BMP
+ *
+ * Memory Layout:
+ * - Pixels stored contiguously in std::vector<uint8_t>
+ * - Index formula: pixel[c] at (x,y) = m_pixels[(y * width + x) * channels + c]
+ * - Supports 1-4 channels (grayscale, grayscale+alpha, RGB, RGBA)
+ *
+ * Dependencies:
+ * - stb_image.h: Image loading (public domain, Sean Barrett)
+ * - stb_image_write.h: Image saving (public domain, Sean Barrett)
+ *
+ * @see Image.hpp for class declaration
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "Image.hpp"
 
 // Disable warnings from STB implementation

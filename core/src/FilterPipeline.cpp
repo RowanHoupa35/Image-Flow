@@ -1,3 +1,29 @@
+/**
+ * @file FilterPipeline.cpp
+ * @brief Implementation of the filter chain management system
+ *
+ * This file implements the FilterPipeline class which manages an ordered
+ * sequence of image filters. Filters are applied sequentially, with each
+ * filter's output becoming the next filter's input.
+ *
+ * @details
+ * Key Features Implemented:
+ * - Deep copy semantics via clone() pattern (Rule of Five)
+ * - Move semantics for efficient image processing (std::move)
+ * - Filter ordering (insert, remove, move up/down)
+ * - Simple JSON-like serialization for pipeline persistence
+ * - Smart pointer ownership (std::unique_ptr<Filter>)
+ *
+ * Memory Management:
+ * - Uses two-buffer technique: result and temp images
+ * - Minimizes allocations by reusing buffers between filter steps
+ * - Move semantics prevent unnecessary copies
+ *
+ * @see FilterPipeline.hpp for class declaration
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "FilterPipeline.hpp"
 #include "filters/GrayscaleFilter.hpp"
 #include "filters/InvertFilter.hpp"

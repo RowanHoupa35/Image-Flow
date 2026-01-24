@@ -1,3 +1,37 @@
+/**
+ * @file benchmark.cpp
+ * @brief Performance benchmark comparing CPU (OpenMP) vs GPU (SYCL)
+ *
+ * Runs standardized tests to measure and compare execution times between
+ * CPU and GPU implementations of the same filters. Useful for evaluating
+ * hardware-specific performance characteristics.
+ *
+ * @details
+ * Test Configuration:
+ * - Image size: 2000x1500 pixels (RGB) = ~9 MB
+ * - Test image: Synthetic gradient pattern (no I/O overhead)
+ * - Filters tested: Grayscale, Box Blur (radius=3)
+ *
+ * Measurements:
+ * - Execution time per filter (milliseconds)
+ * - Speedup ratio (CPU time / GPU time)
+ *
+ * Expected Results:
+ * - Discrete GPU: 10-100x speedup for large images
+ * - Integrated GPU: May be slower due to memory transfer overhead
+ * - CPU: Consistent baseline, benefits from OpenMP multi-threading
+ *
+ * Usage Notes:
+ * - Run multiple times for consistent results (first run may be slower)
+ * - GPU performance depends on driver, device, and memory bandwidth
+ * - Small images may show CPU faster due to GPU setup overhead
+ *
+ * @see GrayscaleFilter, GrayscaleFilterGPU for grayscale implementations
+ * @see BoxBlurFilter, BoxBlurFilterGPU for blur implementations
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include <iostream>
 #include <iomanip>
 #include "Image.hpp"

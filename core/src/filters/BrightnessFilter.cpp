@@ -1,3 +1,31 @@
+/**
+ * @file BrightnessFilter.cpp
+ * @brief Brightness adjustment filter implementation using OpenMP
+ *
+ * Adjusts image brightness by multiplying all pixel values by a factor.
+ * Factor > 1.0 brightens, factor < 1.0 darkens, factor = 1.0 unchanged.
+ *
+ * @details
+ * Algorithm: output[x,y,c] = clamp(input[x,y,c] * factor, 0, 255)
+ * - Linear scaling of pixel values
+ * - Clamping prevents overflow/underflow
+ * - Applied uniformly to all channels
+ *
+ * Parallelization Strategy:
+ * - Uses OpenMP collapse(2) to parallelize both X and Y loops
+ * - Combined iteration space divided among threads
+ * - Better load distribution than parallelizing only outer loop
+ *
+ * Usage:
+ * - factor = 0.5: 50% darker
+ * - factor = 1.0: no change
+ * - factor = 1.5: 50% brighter
+ * - factor = 2.0: double brightness (may saturate)
+ *
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include "filters/BrightnessFilter.hpp"
 #include <algorithm> // for std::clamp
 

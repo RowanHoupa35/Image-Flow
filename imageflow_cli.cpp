@@ -1,3 +1,38 @@
+/**
+ * @file imageflow_cli.cpp
+ * @brief Command-line interface for ImageFlow image processing
+ *
+ * Provides a terminal-based interface for batch image processing without
+ * requiring the GUI. Supports single image, batch, and interactive modes.
+ *
+ * @details
+ * Commands:
+ * - list: Show all image files in current directory
+ * - process <file>: Interactive filter selection for single image
+ * - batch: Apply same pipeline to all images in directory
+ * - help: Display usage information
+ *
+ * Features:
+ * - ANSI color output for better terminal readability
+ * - Dynamic filter discovery from FilterFactory
+ * - Supports both CPU and GPU filter variants
+ * - Parameter prompts for configurable filters (brightness, blur)
+ * - Timing information for performance analysis
+ *
+ * Filter Selection:
+ * - Queries FilterFactory at runtime for available filters
+ * - Lists GPU variants separately when available
+ * - Prompts for parameters where needed (brightness factor, blur radius)
+ *
+ * Output Naming:
+ * - Single image: <name>_processed.<ext>
+ * - Batch mode: <name>_batch.<ext>
+ *
+ * @see FilterFactory for filter registration system
+ * @author Rowan HOUPA
+ * @date January 2026
+ */
+
 #include <iostream>
 #include <iomanip>
 #include <string>

@@ -1,3 +1,32 @@
+/**
+ * @file test_openmp.cpp
+ * @brief OpenMP parallelization verification and speedup test
+ *
+ * Simple vector addition benchmark to verify OpenMP is working correctly
+ * and measure the speedup from multi-threading.
+ *
+ * @details
+ * Test: Vector addition c[i] = a[i] + b[i] for 10 million elements
+ *
+ * Measurements:
+ * - Sequential execution time (single-threaded)
+ * - Parallel execution time (OpenMP multi-threaded)
+ * - Speedup ratio (sequential / parallel)
+ *
+ * Expected Results:
+ * - On 4-core CPU: ~3-4x speedup
+ * - On 8-core CPU: ~6-8x speedup
+ * - Speedup may be limited by memory bandwidth
+ *
+ * Verification:
+ * - Prints number of available threads (OMP_NUM_THREADS)
+ * - Compares times to confirm parallelization is active
+ *
+ * @note If speedup is ~1x, check OpenMP compilation flags (-fopenmp)
+ * @author ENSTA Paris - IN204 Project
+ * @date January 2026
+ */
+
 #include <iostream>
 #include <vector>
 #include <chrono>
