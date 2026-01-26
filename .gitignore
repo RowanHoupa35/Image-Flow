@@ -46,13 +46,13 @@ ui_*.h
 *.toc
 *.pdf
 
-# Test images (optional - comment out if you want to include them)
-test_images/
-*.png
-*.jpg
-*.jpeg
-*.bmp
-*.tga
+# Test images - now tracked
+# test_images/
+# *.png
+# *.jpg
+# *.jpeg
+# *.bmp
+# *.tga
 
 # Documentation summary (internal use)
 DOCUMENTATION_SUMMARY.md
