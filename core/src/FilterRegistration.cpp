@@ -3,7 +3,7 @@
  * @brief Central registration point for all image filters
  *
  * This file registers all available filters with the FilterFactory singleton.
- * Using static initialization, filters are registered before main() executes,
+ * Using static initialization,filters are registered before main() executes,
  * making them immediately available to both GUI and CLI interfaces.
  *
  * @details
