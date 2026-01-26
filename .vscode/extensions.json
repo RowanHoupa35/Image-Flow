@@ -20,6 +20,7 @@
         "yzhang.markdown-all-in-one",   // For README editing
 
         // LaTeX (for report.tex)
-        "james-yu.latex-workshop"       // LaTeX support
+        "james-yu.latex-workshop",
+        "github.copilot-chat" // LaTeX support
     ]
 }

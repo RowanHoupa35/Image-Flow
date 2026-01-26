@@ -37,7 +37,6 @@ public:
         return std::make_unique<BrightnessFilter>(*this);
     }
     
-    // Getter/Setter for UI control
     float getBrightness() const { return brightnessFactor; }
     void setBrightness(float factor) { brightnessFactor = factor; }
     

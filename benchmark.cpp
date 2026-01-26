@@ -59,11 +59,9 @@ void benchmark(const std::string& name, Filter& filter, const Image& img) {
 int main() {
     printHeader();
     
-    // Créer image de test
     std::cout << "Création d'une image de test (2000x1500)...\n";
     Image testImg(2000, 1500, 3);
     
-    // Remplir avec un gradient
     for (int y = 0; y < testImg.getHeight(); ++y) {
         for (int x = 0; x < testImg.getWidth(); ++x) {
             testImg.at(x, y, 0) = (x * 255) / testImg.getWidth();
@@ -72,11 +70,10 @@ int main() {
         }
     }
     
-    std::cout << "✓ Image créée: " << testImg.getWidth() << "x" 
+    std::cout << "Image créée: " << testImg.getWidth() << "x" 
               << testImg.getHeight() << " (" << testImg.size() / 1024 / 1024 
               << " MB)\n\n";
     
-    // Benchmark Grayscale
     std::cout << " Test 1: GRAYSCALE\n";
     std::cout << std::string(50, '-') << "\n";
     
@@ -89,7 +86,6 @@ int main() {
     double speedup1 = gsCPU.getLastExecutionTime() / gsGPU.getLastExecutionTime();
     std::cout << "Speedup GPU: " << std::setprecision(2) << speedup1 << "x\n\n";
     
-    // Benchmark Blur
     std::cout << " Test 2: BOX BLUR (radius=3)\n";
     std::cout << std::string(50, '-') << "\n";
     
@@ -102,7 +98,6 @@ int main() {
     double speedup2 = blurCPU.getLastExecutionTime() / blurGPU.getLastExecutionTime();
     std::cout << " Speedup GPU: " << std::setprecision(2) << speedup2 << "x\n\n";
     
-    // Résumé
     std::cout << "╔═══════════════════════════════════════════════════════════════╗\n";
     std::cout << "║                       RÉSUMÉ                                  ║\n";
     std::cout << "╠═══════════════════════════════════════════════════════════════╣\n";

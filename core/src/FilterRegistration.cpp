@@ -54,21 +54,21 @@ void registerAllFilters() {
     std::cout << "========== REGISTERING FILTERS ==========" << std::endl;
     auto& factory = FilterFactory::instance();
 
-    // Grayscale filter (has both CPU and GPU versions)
+    // Grayscale filter
     factory.registerFilterWithGPU<GrayscaleFilter, GrayscaleFilterGPU>(
         "grayscale",
         "Niveaux de Gris",
         "Convertit l'image en niveaux de gris"
     );
 
-    // Invert filter (CPU only)
+    // Invert filter
     factory.registerFilter<InvertFilter>(
         "invert",
         "Inverser",
         "Inverse les couleurs de l'image"
     );
 
-    // Brightness filter (parameterized, CPU only)
+    // Brightness filter
     factory.registerParameterizedFilter<BrightnessFilter>(
         "brightness",
         "Luminosité",
@@ -76,7 +76,7 @@ void registerAllFilters() {
         []() { return std::make_unique<BrightnessFilter>(1.0f); }
     );
 
-    // Box Blur filter (has both CPU and GPU versions, parameterized)
+    // Box Blur filter
     factory.registerParameterizedFilterWithGPU<BoxBlurFilter, BoxBlurFilterGPU>(
         "boxblur",
         "Flou",
@@ -85,7 +85,7 @@ void registerAllFilters() {
         []() { return std::make_unique<BoxBlurFilterGPU>(2); }
     );
 
-    // Sepia filter (DEMO: Added without touching GUI code!)
+    // Sepia filter
     factory.registerFilter<SepiaFilter>(
         "sepia",
         "Ton Sépia",
@@ -95,17 +95,12 @@ void registerAllFilters() {
     std::cout << "Total filters registered: " << factory.getFilterIds().size() << std::endl;
     std::cout << "========== REGISTRATION COMPLETE ==========" << std::endl;
 }
-
-/**
- * @brief Static initialization helper
- */
 namespace {
     struct FilterRegistrar {
         FilterRegistrar() {
             registerAllFilters();
         }
     };
-
-    // This ensures filters are registered before main() runs
+    
     static FilterRegistrar registrar;
 }

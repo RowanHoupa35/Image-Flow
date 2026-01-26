@@ -57,14 +57,12 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("ImageFlow - Image Processing Application");
     setMinimumSize(1200, 700);
     
-    // Créer l'interface
     createActions();
     createMenus();
     createToolbars();
     createStatusBar();
     createCentralWidget();
     
-    // Timer pour preview
     previewTimer.setSingleShot(true);
     previewTimer.setInterval(100);
     connect(&previewTimer, SIGNAL(timeout()), this, SLOT(updatePreview()));
@@ -78,12 +76,9 @@ MainWindow::~MainWindow() {
     qDebug() << "MainWindow détruite";
 }
 
-// ==================== CRÉATION DES ACTIONS ====================
-
 void MainWindow::createActions() {
     qDebug() << "Création des actions...";
     
-    // File actions
     fileOpenAction = new QAction("&Ouvrir...", this);
     fileOpenAction->setShortcut(QKeySequence::Open);
     fileOpenAction->setStatusTip("Ouvrir une image");
@@ -101,7 +96,6 @@ void MainWindow::createActions() {
     fileExitAction->setStatusTip("Quitter l'application");
     connect(fileExitAction, SIGNAL(triggered()), this, SLOT(onFileExit()));
 
-    // Help actions
     helpAboutAction = new QAction("&À propos", this);
     connect(helpAboutAction, SIGNAL(triggered()), this, SLOT(onAbout()));
 
@@ -111,15 +105,13 @@ void MainWindow::createActions() {
 
 void MainWindow::createMenus() {
     qDebug() << "Création des menus...";
-    
-    // Menu File
+
     QMenu *fileMenu = menuBar()->addMenu("&Fichier");
     fileMenu->addAction(fileOpenAction);
     fileMenu->addAction(fileSaveAction);
     fileMenu->addSeparator();
     fileMenu->addAction(fileExitAction);
-    
-    // Menu Help
+
     QMenu *helpMenu = menuBar()->addMenu("&Aide");
     helpMenu->addAction(helpAboutAction);
     helpMenu->addAction(helpAboutQtAction);

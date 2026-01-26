@@ -53,4 +53,4 @@ public:
      virtual double getLastExecutionTime() const { return 0.0; }
 };
 
-#endif // FILTER_HPP
+#endif

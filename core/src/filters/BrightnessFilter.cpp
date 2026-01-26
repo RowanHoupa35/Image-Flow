@@ -27,7 +27,7 @@
  */
 
 #include "filters/BrightnessFilter.hpp"
-#include <algorithm> // for std::clamp
+#include <algorithm>
 
 void BrightnessFilter::apply(const Image& input, Image& output) {
     output = Image(input.getWidth(), input.getHeight(), input.getChannels());
@@ -43,7 +43,6 @@ void BrightnessFilter::apply(const Image& input, Image& output) {
                 float pixel = static_cast<float>(input.at(x, y, c));
                 pixel *= brightnessFactor;
                 
-                // Clamp to [0, 255]
                 pixel = std::clamp(pixel, 0.0f, 255.0f);
                 
                 output.at(x, y, c) = static_cast<uint8_t>(pixel);

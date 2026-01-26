@@ -37,7 +37,7 @@ public:
     }
     bool supportsGPU() const override { return true; }
     
-    double getLastExecutionTime() const override { return lastExecutionTime; }  // ← Ajout de override
+    double getLastExecutionTime() const override { return lastExecutionTime; } 
     
 private:
     double lastExecutionTime = 0.0;

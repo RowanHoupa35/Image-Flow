@@ -36,7 +36,6 @@ void GrayscaleFilter::apply(const Image& input, Image& output) {
     int width = input.getWidth();
     int height = input.getHeight();
 
-    // OpenMP parallelization: Each row processed by a different thread
     #pragma omp parallel for schedule(dynamic)
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {

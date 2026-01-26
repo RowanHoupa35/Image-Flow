@@ -43,14 +43,12 @@ class FilterPipeline {
 public:
     FilterPipeline() = default;
     
-    // Rule of Five: proper resource management
     ~FilterPipeline() = default;
     FilterPipeline(const FilterPipeline& other);
     FilterPipeline& operator=(const FilterPipeline& other);
     FilterPipeline(FilterPipeline&&) = default;
     FilterPipeline& operator=(FilterPipeline&&) = default;
     
-    // Filter management
     void addFilter(std::unique_ptr<Filter> filter);
     void insertFilter(size_t index, std::unique_ptr<Filter> filter);
     void removeFilter(size_t index);
@@ -58,30 +56,24 @@ public:
     void moveFilterDown(size_t index);
     void clear();
     
-    // Main processing method
     Image apply(const Image& input) const;
-    Image apply(Image&& input) const; // For rvalue optimization
+    Image apply(Image&& input) const;
     
-    // Batch processing with progress callback (optional)
     template<typename ProgressCallback>
     Image applyWithProgress(const Image& input, ProgressCallback callback) const;
     
-    // Accessors
     size_t size() const { return filters.size(); }
     bool empty() const { return filters.empty(); }
     
     const Filter* getFilter(size_t index) const;
     Filter* getFilter(size_t index);
     
-    // Serialization/deserialization
     std::string toString() const;
     bool fromString(const std::string& config);
     
-    // Save/Load pipeline to file (JSON format)
     bool saveToFile(const std::string& filepath) const;
     bool loadFromFile(const std::string& filepath);
     
-    // For UI display
     std::string getDescription() const;
 
     struct PipelineMetrics {
@@ -93,19 +85,16 @@ public:
     
     PipelineMetrics applyWithMetrics(const Image& input);
     
-    // Méthode pour choisir l'implémentation (CPU/GPU)
     enum class ProcessingMode { AUTO, CPU_ONLY, GPU_PREFERRED };
     void setProcessingMode(ProcessingMode mode) { processingMode = mode; }
     
 private:
     std::vector<std::unique_ptr<Filter>> filters;
     
-    // Helper for deep copying
     std::unique_ptr<Filter> cloneFilter(const Filter* filter) const;
     ProcessingMode processingMode = ProcessingMode::AUTO;
 };
 
-// Template implementation (must be in header)
 template<typename ProgressCallback>
 Image FilterPipeline::applyWithProgress(const Image& input, ProgressCallback callback) const {
     if (filters.empty()) {
@@ -119,11 +108,10 @@ Image FilterPipeline::applyWithProgress(const Image& input, ProgressCallback cal
         Image temp = std::move(result);
         filters[i]->apply(temp, result);
         
-        // Call progress callback - no need to check if it's valid
         callback((i + 1) * progressStep, filters[i]->getName());
     }
     
     return result;
 }
 
-#endif // FILTER_PIPELINE_HPP
+#endif

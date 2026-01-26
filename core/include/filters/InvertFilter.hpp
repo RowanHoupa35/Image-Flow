@@ -27,7 +27,6 @@ public:
         return std::make_unique<InvertFilter>(*this);
     }
     
-    // Simple inversion works equally well on CPU/GPU
     bool supportsGPU() const override { return true; }
 };
 

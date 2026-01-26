@@ -42,7 +42,6 @@ void BoxBlurFilter::apply(const Image& input, Image& output) {
     int height = input.getHeight();
     int channels = input.getChannels();
     
-    // Version CPU avec OpenMP
     #pragma omp parallel for collapse(2) schedule(dynamic)
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {

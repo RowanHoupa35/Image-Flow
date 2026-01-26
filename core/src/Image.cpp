@@ -28,7 +28,6 @@
 
 #include "Image.hpp"
 
-// Disable warnings from STB implementation
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
 #pragma GCC diagnostic ignored "-Wunused-variable"
@@ -69,7 +68,7 @@ bool Image::saveToFile(const std::string& filepath) const {
                              m_pixels.data(), m_width * m_channels);
     } else if (ext == "jpg" || ext == "jpeg") {
         return stbi_write_jpg(filepath.c_str(), m_width, m_height, m_channels, 
-                             m_pixels.data(), 90); // 90% quality
+                             m_pixels.data(), 90);
     } else if (ext == "bmp") {
         return stbi_write_bmp(filepath.c_str(), m_width, m_height, m_channels, 
                              m_pixels.data());
@@ -86,7 +85,6 @@ uint8_t& Image::at(int x, int y, int channel) {
 }
 
 const uint8_t& Image::at(int x, int y, int channel) const {
-    // Reuse non-const version to avoid code duplication
     return const_cast<Image*>(this)->at(x, y, channel);
 }
 

@@ -35,7 +35,6 @@ void InvertFilter::apply(const Image& input, Image& output) {
     
     int totalPixels = input.getWidth() * input.getHeight() * input.getChannels();
     
-    // Configuration OpenMP dynamique
     int numThreads = omp_get_max_threads();
     omp_set_num_threads(numThreads);
     
@@ -44,7 +43,6 @@ void InvertFilter::apply(const Image& input, Image& output) {
         output.data()[i] = 255 - input.data()[i];
     }
     
-    // Debug info
     #ifdef DEBUG
     #pragma omp single
     std::cout << "[CPU] InvertFilter - Threads: " << numThreads 

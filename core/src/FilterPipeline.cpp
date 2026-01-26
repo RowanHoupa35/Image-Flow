@@ -35,10 +35,7 @@
 #include <algorithm>
 #include <memory>
 
-// === Constructor & Assignment Operators ===
-
 FilterPipeline::FilterPipeline(const FilterPipeline& other) {
-    // Deep copy all filters
     for (const auto& filter : other.filters) {
         filters.push_back(filter->clone());
     }
@@ -53,8 +50,6 @@ FilterPipeline& FilterPipeline::operator=(const FilterPipeline& other) {
     }
     return *this;
 }
-
-// === Filter Management ===
 
 void FilterPipeline::addFilter(std::unique_ptr<Filter> filter) {
     if (!filter) {
@@ -96,19 +91,17 @@ void FilterPipeline::clear() {
     filters.clear();
 }
 
-// === Core Processing ===
-
 Image FilterPipeline::apply(const Image& input) const {
     if (filters.empty()) {
-        return input; // No filters, return copy of input
+        return input;
     }
     
-    Image result = input; // Copy constructor
-    Image temp; // Reusable temporary
+    Image result = input;
+    Image temp; 
     
     for (const auto& filter : filters) {
-        temp = std::move(result);    // Move result to temp
-        filter->apply(temp, result); // Process: temp -> result
+        temp = std::move(result);
+        filter->apply(temp, result); 
     }
     
     return result;
@@ -116,21 +109,19 @@ Image FilterPipeline::apply(const Image& input) const {
 
 Image FilterPipeline::apply(Image&& input) const {
     if (filters.empty()) {
-        return std::move(input); // No filters, return input (moved)
+        return std::move(input);
     }
     
-    Image result = std::move(input); // Move input to result
+    Image result = std::move(input);
     Image temp;
     
     for (const auto& filter : filters) {
-        temp = std::move(result);    // Move result to temp
-        filter->apply(temp, result); // Process: temp -> result
+        temp = std::move(result);
+        filter->apply(temp, result);
     }
     
     return result;
 }
-
-// === Accessors ===
 
 const Filter* FilterPipeline::getFilter(size_t index) const {
     if (index >= filters.size()) {
@@ -140,11 +131,8 @@ const Filter* FilterPipeline::getFilter(size_t index) const {
 }
 
 Filter* FilterPipeline::getFilter(size_t index) {
-    // Reuse const version to avoid code duplication
     return const_cast<Filter*>(static_cast<const FilterPipeline*>(this)->getFilter(index));
 }
-
-// === Serialization ===
 
 std::string FilterPipeline::toString() const {
     std::ostringstream oss;
@@ -173,8 +161,6 @@ std::string FilterPipeline::getDescription() const {
     return oss.str();
 }
 
-// === File I/O (Simple JSON-like format) ===
-
 bool FilterPipeline::saveToFile(const std::string& filepath) const {
     std::ofstream file(filepath);
     if (!file.is_open()) {
@@ -188,7 +174,6 @@ bool FilterPipeline::saveToFile(const std::string& filepath) const {
         file << "    {\n";
         file << "      \"name\": \"" << filters[i]->getName() << "\",\n";
         
-        // Safe way to get type name
         const Filter& filterRef = *filters[i];
         file << "      \"type\": \"" << typeid(filterRef).name() << "\"\n";
         
@@ -204,25 +189,19 @@ bool FilterPipeline::saveToFile(const std::string& filepath) const {
 }
 
 bool FilterPipeline::loadFromFile(const std::string& filepath) {
-    // Simplified implementation - in reality you'd parse JSON
-    // and create appropriate filter instances
+
     std::ifstream file(filepath);
     if (!file.is_open()) {
         return false;
     }
     
-    // For now, just clear and add default filters as example
-    // You would implement proper JSON parsing here
     filters.clear();
     
-    // Example: Add some default filters
     filters.push_back(std::make_unique<GrayscaleFilter>());
     filters.push_back(std::make_unique<BrightnessFilter>(1.2f));
     
     return true;
 }
-
-// === Helper ===
 
 std::unique_ptr<Filter> FilterPipeline::cloneFilter(const Filter* filter) const {
     if (!filter) return nullptr;

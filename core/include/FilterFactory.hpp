@@ -41,25 +41,19 @@ class FilterFactory {
 public:
     // Filter metadata for UI
     struct FilterInfo {
-        std::string name;           // Display name (e.g., "Grayscale")
-        std::string description;    // Short description
-        bool hasGPUVersion;         // Does this filter have GPU support?
-        bool hasParameters;         // Does this filter have adjustable parameters?
-        std::function<std::unique_ptr<Filter>()> createCPU;  // CPU version creator
-        std::function<std::unique_ptr<Filter>()> createGPU;  // GPU version creator (optional)
+        std::string name;           
+        std::string description;    
+        bool hasGPUVersion;        
+        bool hasParameters;         
+        std::function<std::unique_ptr<Filter>()> createCPU; 
+        std::function<std::unique_ptr<Filter>()> createGPU; 
     };
 
-    /**
-     * @brief Get the singleton instance
-     */
     static FilterFactory& instance() {
         static FilterFactory factory;
         return factory;
     }
 
-    /**
-     * @brief Register a filter (CPU only)
-     */
     template<typename FilterType>
     void registerFilter(const std::string& id,
                        const std::string& displayName,
@@ -75,9 +69,6 @@ public:
         filters[id] = info;
     }
 
-    /**
-     * @brief Register a filter with CPU and GPU versions
-     */
     template<typename CPUFilterType, typename GPUFilterType>
     void registerFilterWithGPU(const std::string& id,
                                const std::string& displayName,
@@ -93,9 +84,6 @@ public:
         filters[id] = info;
     }
 
-    /**
-     * @brief Register a parameterized filter (CPU only)
-     */
     template<typename FilterType>
     void registerParameterizedFilter(
         const std::string& id,
@@ -114,9 +102,6 @@ public:
         filters[id] = info;
     }
 
-    /**
-     * @brief Register a parameterized filter with GPU version
-     */
     template<typename CPUFilterType, typename GPUFilterType>
     void registerParameterizedFilterWithGPU(
         const std::string& id,
@@ -136,9 +121,6 @@ public:
         filters[id] = info;
     }
 
-    /**
-     * @brief Create a filter instance by ID
-     */
     std::unique_ptr<Filter> create(const std::string& id, bool useGPU = false) const {
         auto it = filters.find(id);
         if (it == filters.end()) {
@@ -152,9 +134,6 @@ public:
         return it->second.createCPU();
     }
 
-    /**
-     * @brief Get all registered filter IDs
-     */
     std::vector<std::string> getFilterIds() const {
         std::vector<std::string> ids;
         for (const auto& pair : filters) {
@@ -163,9 +142,6 @@ public:
         return ids;
     }
 
-    /**
-     * @brief Get filter metadata
-     */
     const FilterInfo* getFilterInfo(const std::string& id) const {
         auto it = filters.find(id);
         if (it == filters.end()) {
@@ -174,9 +150,6 @@ public:
         return &it->second;
     }
 
-    /**
-     * @brief Check if a filter exists
-     */
     bool hasFilter(const std::string& id) const {
         return filters.find(id) != filters.end();
     }
@@ -186,4 +159,4 @@ private:
     std::map<std::string, FilterInfo> filters;
 };
 
-#endif // FILTER_FACTORY_HPP
+#endif 

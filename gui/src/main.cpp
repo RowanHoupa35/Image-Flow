@@ -36,21 +36,17 @@
 #include "FilterFactory.hpp"
 #include <iostream>
 
-// Declare the filter registration function
 extern void registerAllFilters();
 
 int main(int argc, char* argv[]) {
-    // IMPORTANT: Initialize filters before creating GUI
     std::cout << "Initializing filter factory..." << std::endl;
     registerAllFilters();
     std::cout << "Filters registered: " << FilterFactory::instance().getFilterIds().size() << std::endl;
 
     QApplication app(argc, argv);
 
-    // Set Fusion style for modern look
     app.setStyle(QStyleFactory::create("Fusion"));
 
-    // Set dark palette for image processing
     QPalette darkPalette;
     darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));
     darkPalette.setColor(QPalette::WindowText, Qt::white);
