@@ -2,7 +2,7 @@
  * @file benchmark.cpp
  * @brief Performance benchmark comparing CPU (OpenMP) vs GPU (SYCL)
  *
- * Runs standardized tests to measure and compare execution times between
+ * Runs standardized tests to measure and compare execution time between
  * CPU and GPU implementations of the same filters. Useful for evaluating
  * hardware-specific performance characteristics.
  *
