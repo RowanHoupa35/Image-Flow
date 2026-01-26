@@ -39,13 +39,6 @@ ui_*.h
 *~
 .#*
 
-# LaTeX auxiliary files
-*.aux
-*.log
-*.out
-*.toc
-*.pdf
-
 # Test images - now tracked
 # test_images/
 # *.png
@@ -53,13 +46,3 @@ ui_*.h
 # *.jpeg
 # *.bmp
 # *.tga
-
-# Documentation summary (internal use)
-DOCUMENTATION_SUMMARY.md
-
-# Backup and temporary scripts
-*.bak
-compile_test.sh
-launch_imageflow.sh
-run_fixed.sh
-test_button.sh
