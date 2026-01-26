@@ -2,7 +2,7 @@
  * @file SepiaFilter.hpp
  * @brief Sepia tone vintage photo effect filter with OpenMP parallelization
  *
- * This filter applies a warm, brownish sepia tone to images, simulating the
+ * This filter applies a warm brownish sepia tone to images, simulating the
  * look of antique photographs. Uses standard sepia transformation coefficients
  * derived from photographic color science.
  *
