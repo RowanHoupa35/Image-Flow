@@ -2,25 +2,18 @@
     // Recommended VSCode extensions for this project
     "recommendations": [
         // Git Integration
-        "eamodio.gitlens",              // Enhanced Git features
-        "mhutchie.git-graph",           // Visual Git history
-        "donjayamanne.githistory",      // Git file history
+        "eamodio.gitlens",              
+        "mhutchie.git-graph",           
+        "donjayamanne.githistory",      
 
         // C++ Development
-        "ms-vscode.cpptools",           // C/C++ IntelliSense
-        "ms-vscode.cmake-tools",        // CMake integration
+        "ms-vscode.cpptools",           
+        "ms-vscode.cmake-tools",        
 
         // Qt Development
-        "tonka3000.qtvsctools",         // Qt tools
-
-        // Code Quality
-        "llvm-vs-code-extensions.vscode-clangd",  // Clang tools
-
+        "tonka3000.qtvsctools",         
+        
         // Markdown
         "yzhang.markdown-all-in-one",   // For README editing
-
-        // LaTeX (for report.tex)
-        "james-yu.latex-workshop",
-        "github.copilot-chat" // LaTeX support
     ]
 }
