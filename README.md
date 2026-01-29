@@ -180,7 +180,6 @@ ImageFlow/
 ├── benchmark.cpp            # Performance testing
 ├── run_gui.sh              # GUI launcher
 ├── run_cli.sh              # CLI launcher
-└── report.tex              # Full technical documentation
 ```
 
 ## Technologies Used
